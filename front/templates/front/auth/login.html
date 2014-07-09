@@ -1,0 +1,45 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="span12">
+        <h2 class="page-title">Login</h2>
+        <div>
+            Caso não tenha usuário, crie sua conta <a href="{% url 'startups_create' %}">aqui</a>.
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+	<div class="span12">
+		<form action="{% url 'login' %}" method="post" class="form-horizontal">{% csrf_token %}
+			<div class="control-group">
+				<label class="control-label" for="username">Usuário ou Email</label>
+				<div class="controls">
+					<input type="text" id="username" name="username" class="span5 required">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="password">Senha</label>
+				<div class="controls">
+					<input type="password" id="password" name="password" class="span5 required">
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn btn-large btn-primary">Entrar</button>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<a href="{% url 'password_reset' %}" class="">Esqueceu sua senha?</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

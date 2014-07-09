@@ -1,0 +1,90 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+
+{% load fieldsets %}
+
+{% block content %}
+
+<div class="row">
+    <div class="span6">
+        <h2 class="page-title">Sou uma Startup</h2>
+        <div>Preencha os todos os campos abaixo para criar sua startup.</div>
+    </div>
+    <div class="span6">
+        <h2 class="page-title">Sou um Profissional</h2>
+        <div>Trabalha ou gostaria de trabalhar em uma startup?</div>
+    </div>
+</div>
+
+<hr>
+
+
+<div class="row">
+
+    <div class="span6">
+        <form action="{% url 'startups_create' %}" method="post" class="">{% csrf_token %}
+			{% for hidden in form.hidden_fields %}
+		    	{{ hidden }}
+		    {% endfor %}
+		    
+		    {% include 'front/layout/_form_errors.html' %}
+		    
+			{% get_fieldset username,email,password,password_confirmation as user_form from form %}
+			
+			{% for field in user_form %}
+				{% include 'front/layout/_form_field.html' %}
+		    {% endfor %}
+		    
+		    <hr>
+		    
+		    {% get_fieldset name,site,address,state as startup_form from form %}
+			
+			{% for field in startup_form %}
+		        {% include 'front/layout/_form_field.html' %}
+		    {% endfor %}
+
+			<hr>
+
+			<div class="control-group">
+				<div class="controls">
+					<button class="btn btn-primary btn-large">Cadastrar</button>
+				</div>
+		    </div>
+		    
+		</form>
+	</div>
+	
+	<div class="span6">
+        <p><b>Por favor, leia com atenção.</b></p>
+        
+        <p>
+            Para entrar no site como profissional você deve possuir uma conta no <b>Linkedin</b> (<a href="http://www.linkedin.com" target="_blank">www.linkedin.com</a>).
+            Usaremos as mesmas informações do seu perfil no <b>Linkedin</b> para criar seu cadastro aqui, você não precisa de mais um usuário e senha.
+        </p>
+            
+        <p>
+            Informações pessoais (como endereços, telefones ou emails) <b>NUNCA</b> serão disponibilizadas publicamente. 
+            Caso uma startup queira entrar em contato com você, ela deverá fazê-lo através do <b>Linkedin</b> diretamente. 
+            A qualquer momento você pode cancelar sua inscrição no nosso site através da sua página.
+        </p>
+        
+        <div style="margin-top:40px">
+            <a href="{% url 'people_authorize' %}" class="btn btn-large btn-info">Entrar com Linkedin</a>
+        </div>
+    </div>
+</div>
+
+{% include 'front/layout/_markdown_help.html' %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

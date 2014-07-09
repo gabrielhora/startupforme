@@ -1,0 +1,17 @@
+Olá {{ job.startup.name }},
+
+A vaga {{ job.title }} foi publicada com sucesso, você pode acessá-la através deste link {{ job_url }}.
+
+Ela ficará disponível no StartupForMe por 30 dias, até {{ job.expire_at }}.
+
+Caso necessário você pode editar as informações desta vaga aqui {{ job_edit_url }}.
+
+Ou caso consiga contratar alguém antes dos 30 dias você pode excluir esta vaga clicando no link "Excluir" na página da vaga.
+
+
+Tenha um bom dia e nos vemos por ai.
+
+- StartupBot
+
+
+www.StartupForMe.com

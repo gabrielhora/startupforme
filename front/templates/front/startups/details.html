@@ -1,0 +1,108 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+{% load markdown %}
+{% load startups %}
+{% load states %}
+{% load maps %}
+
+{% block description %}{{ startup.name }}{% if startup.short_profile %}{{ startup.short_profile }}{% elif startup.profile %}{{ startup.profile|truncatewords:30 }}{% endif %}{% endblock %}
+{% block keywords %}{% if startup.tags.all %}{{ startup.tags.all|join:", " }}{% endif %}{% endblock %}
+{% block og:image %}{% if startup.logo %}{{ startup.logo.url }}{% endif %}{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    $(document).ready(function() {
+       $("#delete_account").on("click", function(e) {
+            e.preventDefault();
+            bootbox.confirm("<h5 style='color:red'>Atenção!</h5><br/>Tem certeza que deseja <b>excluir</b> sua conta?<br/>Todos os seus dados serão perdidos.", "Cancelar", function(result) {
+                if (result) {
+                    window.location.replace("{% url 'startups_delete' startup.owner.username %}");
+                }
+            });
+        })
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="span12">
+        <h2 class="page-title">{{ startup.name }}</h2>
+        <div>
+            <a href="{{ startup.site }}">{{ startup.site }}</a>
+        </div>
+        <div>
+            <!-- tags -->
+            {% if startup.tags.all %}
+                <div style="line-height:30px">
+                {% for tag in startup.tags.all %}
+                    <a href="{% url 'startups_index' %}?tag={{tag.name|urlencode}}" class="label label-{% cycle 'belize-hole' 'peter-river' %}">{{ tag.name }}</a>
+                {% endfor %}
+                </div>
+            {% endif %}
+            <!-- / tags -->
+        </div>
+    </div>
+</div>
+
+<hr class="small_top">
+
+<div class="row startup-details">
+	<div class="span8">
+	    {% include 'front/layout/_share_links.html' %}
+	    
+		{% if startup.short_profile %}
+			<p style="margin:30px 0;"><i>{{ startup.short_profile }}</i></p>
+		{% endif %}
+		
+		{% if startup.profile %}
+			<div class="markdown">{{ startup.profile|markdown }}</div>
+			<hr>
+		{% endif %}
+
+		<h6>Endereço</h6>
+        <p>
+            {{ startup.address }} - {{ startup.state|state_name }}
+        </p>
+        
+        <div>
+            {% if startup.gmaps_address %}
+                {% get_staticmap_latlng startup.gmaps_address startup.lat startup.lng 620 220 14 %}
+            {% else %}
+                {% get_staticmap startup.address startup.state 620 220 14 %}
+            {% endif %}
+        </div>
+	</div>
+
+	<div class="span3 offset1">
+		{% if startup.logo %}
+			<img class="logo img-rounded" src="{{ startup.logo_thumbnail.url }}" />
+		{% endif %}
+		
+		{% if startup.owner == user %}
+        <div style="margin-bottom:40px">
+            <h6>Opções:</h6>
+            <ul class="unstyled">
+                <li><a href="{% url 'startups_edit' user.username %}">Editar</a></li>
+                <li><a id="delete_account" style="color:#B94A48" href="#">Excluir minha conta</a></li>
+            </ul>
+        </div>
+        {% endif %}
+		
+		<h6>Outras Startups</h6>
+		{% get_other_startups 5 %}
+	</div>
+	
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

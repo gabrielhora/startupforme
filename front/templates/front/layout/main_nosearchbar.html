@@ -1,0 +1,53 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="description" content="{% block description %}Um banco de startups, vagas e profissionais livre e sem burocracia, de startup para startup. Sem curadoria, sem banners, sem propagandas, nada além do que você realmente procura.{% endblock %}" />
+        <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+        
+        <meta property="og:site_name" content="StartupForMe" />
+        <meta property="og:image" content="{% block og:image %}{% endblock %}" />
+        <meta property="og:title" content="{% block og:title %}{{ title }} StartupForMe{% endblock %}" />
+        <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+        
+        {% block meta %}{% endblock %}
+		
+		<title>{{ title }} StartupForMe</title>
+
+		{% include 'front/layout/_styles.html' %}
+		
+		{% include 'front/layout/_scripts.html' %}
+		
+        {% block scripts %}{% endblock %}
+	</head>
+	<body>
+	    {% include 'front/layout/_topnav.html' %}
+
+		<div class="container" id="wrap">
+
+			<div id="main">
+				{% include 'front/layout/_messages.html' %}
+				
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+		
+        {% include 'front/layout/_footer.html' %}
+
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+        </script>
+ 	</body>
+</html>

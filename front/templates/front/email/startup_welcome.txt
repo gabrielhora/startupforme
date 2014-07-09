@@ -1,0 +1,21 @@
+Olá {{ startup.name }},
+
+Seja bem-vindo a comunidade do StartupForMe!
+
+Agora você já pode cadastrar suas oportunidades de emprego de forma muito simples e buscar pessoas talentosas no nosso banco de profissionais.
+
+Mantenha sempre seu cadastro atualizado e compartilhe a sua página.
+
+Seguem alguns links importantes.
+
+  - Esta é a página da sua empresa {{ profile_url }}.
+  - Aqui você mantém seu perfil atualizado {{ edit_profile_url }}.
+  - E aqui você cadastra as vagas da sua startup {{ jobs_create_url }}
+
+
+Tenha um bom dia e nos vemos por ai.
+
+- StartupBot
+
+
+www.StartupForMe.com

@@ -1,0 +1,53 @@
+{% extends 'front/layout/main.html' %}
+{% load querystring %}
+
+{% block content %}
+
+{% for person in people %}
+
+    <div class="row startup-item">
+        {% if person.picture_url %}
+        <div class="span1">
+            <img class="img-circle" src="{{ person.picture_url }}" />
+        </div>
+        {% endif %}
+        
+        <div class="details span{% if person.picture_url %}11{% else %}12{% endif %}">
+            <h3 class="list-item-title">
+                <a style="color:#34495e" href="{% url 'people_profile' person.slug %}">{{ person.first_name }} {{ person.last_name }}</a>
+            </h3>
+            
+            <!-- tags -->
+            {% if person.skills %}
+                <div style="margin-top:5px">
+                {% with skills=person.random_skills|slice:"5" %}
+                    {% for tag in skills %}
+                        <a href='?{% update_querystring q=tag %}' class="label label-{% cycle 'belize-hole' 'peter-river' %}">{{ tag }}</a>
+                    {% endfor %}
+                {% endwith %}
+                </div>
+            {% endif %}
+            <!-- /tags -->
+            
+            <div style="margin-top:5px">
+                <p>
+                    {{ person.headline }} 
+                    | {{ person.location }} 
+                    {% if person.num_recommenders > 0 %}
+                    | {{ person.num_recommenders }} recomendaç{{ person.num_recommenders|pluralize:"ão,ões" }}
+                    {% endif %}
+                    | {{ person.num_connections }}{% if person.num_connections_capped %}+{% endif %} conex{{ person.num_connections|pluralize:"ão,ões" }}
+                </p>
+                {% if person.summary %}<p>{{ person.summary|truncatechars:250 }}</p>{% endif %}
+            </div>
+        </div>
+        
+    </div>
+    
+    <hr>
+
+{% endfor %}
+
+{% include 'front/layout/_pagination.html' with list=people %}
+
+{% endblock %}

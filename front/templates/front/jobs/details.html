@@ -1,0 +1,10 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+{% load markdown %}
+
+{% block description %}{{ job.startup.name }} busca {{ job.title }} - {{ job.description|markdown|striptags|truncatewords:30 }}{% endblock %}
+{% block keywords %}{% if job.tags.all %}{{ job.tags.all|join:", " }}{% endif %}{% endblock %}
+{% block og:image %}{% if job.startup.logo %}{{ job.startup.logo.url }}{% endif %}{% endblock %}
+
+{% block content %}
+    {% include 'front/jobs/_job.html' %}
+{% endblock %}

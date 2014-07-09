@@ -1,0 +1,57 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="span12">
+        <h2 class="page-title">
+			Bem-vindo ao <span class="startupforme">startup<span class="for">for</span>me</span>!
+		</h2>
+    </div>
+</div>
+
+<hr>
+
+<p>
+    Você está participando do lançamento de uma evolução no acesso à startups no Brasil.
+    Este é um novíssimo site (lançado <b class="timeago" title="2013-05-01 15:00">1 de Maio de 2013 às 15:00</b>) que visa facilitar o acesso
+    a informações sobre empresas startups, suas oportunidades de emprego e também a pessoas que trabalham ou gostariam
+    de trabalhar nessas empresas.
+</p>
+
+<p>
+	O acesso a empresas e suas vagas sempre foi muito burocrático no Brasil, há uma cultura quase generalizada de que quantidade é melhor do que qualidade.
+	Os grandes portais de emprego normalmente cobram taxas relativamente caras dos profissionais que estão em busca de novos empregos, ou taxas mais caras ainda
+	das empresas e o processo de contratação é lento e trabalhoso.
+</p>
+
+<p>
+	Este modelo não funciona para startups! Precisamos de agilidade e facilidade de acesso, custo baixo e profissionais dedicados!
+	O dia a dia de em uma startup é bem diferente de uma grande empresa, e não são todos os profissionais que gostam ou se adptam à este ambiente.
+</p>
+
+<blockquote>
+	<p>
+		Estamos aqui para tentar facilitar a vida das startups brasileiras, tirando totalmente a burocracia do caminho e provendo acesso aos profissionais
+		realmente interessados.
+	</p>
+</blockquote>
+
+<p>
+    Além disso acreditamos que a informação deve ser livre e acessível a todos, sem restrições.
+</p>
+
+<blockquote>
+	<p>
+		Por isso disponibilizamos <b>toda</b> informação publicada neste site sob a licença <a href="http://creativecommons.org.br/" target="_blank">Creative Commons</a>.
+	</p>
+    Isso significa que você pode usar qualquer informação desde que atribua sua origem. 
+    Em breve lançaremos uma API do <span class="startupforme">startup<span class="for">for</span>me</span> para possibilitar o consumo dessas informações por outros sistemas.
+</blockquote>
+
+<p>
+    <a href="{% url 'startups_create' %}">Cadastre</a> sua empresa ou compartilhe seu perfil e ajude a criar este banco de informações livre.
+</p>
+
+
+{% endblock %}

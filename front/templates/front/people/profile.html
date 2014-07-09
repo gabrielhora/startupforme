@@ -1,0 +1,239 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+
+{% block description %}{{ person.full_name }} {{ person.headline }}{% endblock %}
+{% block keywords %}{{ person.skills }}{% endblock %}
+{% if person.picture_url %}
+    {% block og:image %}{{ person.picture_url }}{% endblock %}
+{% endif %}
+
+{% block scripts %}
+<script type="text/javascript">
+    $(document).ready(function() {
+       
+        $("#delete_linkedin").on("click", function(e) {
+            e.preventDefault();
+            bootbox.confirm("Tem certeza que deseja excluir seu perfil?", "Cancelar", function(result) {
+                if (result) {
+                    window.location.replace("{% url 'people_delete' person.slug %}");
+                }
+            });
+        });
+        
+    });
+</script>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    {% if person.picture_url %}
+    <div class="span1">
+        <img class="img-circle" src="{{person.picture_url}}" style="width:60px;height:auto;" />
+    </div>
+    {% endif %}
+
+    <div class="span11">
+        <h2 class="page-title">{{ person.first_name }} {{ person.last_name }}</h2>
+        {{ person.headline }} | {{ person.location }}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    
+    <div class="span8">
+        {% include 'front/layout/_share_links.html' %}
+        
+        <!-- summary -->
+        {% if person.summary %}
+        <div style="margin-bottom:40px">
+            {{person.summary|linebreaks}}
+        </div>
+        {% endif %}
+                
+        <dl class="dl-horizontal" style="margin-top:0;">
+            {% if person.current_positions %}
+            <dt>Atualmente</dt>
+            <dd>
+                <ol style="margin-left:18px">
+                    {% for position in person.current_positions %}
+                        {% if position.title and position.company.name %}
+                            <li>{{ position.title }} na {{ position.company.name }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </dd>
+            {% endif %}
+
+            {% if person.past_positions %}
+            <dt>Anteriores</dt>
+            <dd>
+                <ol style="margin-left:18px">
+                {% for position in person.past_positions %}
+                    {% if position.title and position.company.name %}
+                        <li>{{position.title}} na {{position.company.name}}</li>
+                    {% endif %}
+                {% endfor %}
+                </ol>
+            </dd>
+            {% endif %}
+            
+            {% if person.education_set.all %}
+            <dt>Educação</dt>
+            <dd>
+                <ol style="margin-left:18px">
+                    {% for education in person.education_set.all %}
+                        {% if education.school_name %}
+                            <li>{{education.school_name}}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </dd>
+            {% endif %}
+            
+            {% if person.languages %}
+                <dt>Línguas</dt>
+                <dd>{{person.languages}}</dd>
+            {% endif %}
+            
+            {% if person.skills %}
+                <dt>Habilidades</dt>
+                <dd>{{person.skills}}</dd>
+            {% endif %}
+            
+            {% if person.interests %}
+                <dt>Interesses</dt>
+                <dd>{{person.interests}}</dd>
+            {% endif %}
+            
+            <dt>Recomendações</dt>
+            <dd>
+                {% if person.num_recommenders == 0 %}
+                    nenhuma recomendação
+                {% else %}
+                    {{person.num_recommenders}} recomend{{person.num_recommenders|pluralize:"ou,aram"}} {{person.first_name}} {{person.last_name}}
+                {% endif %}
+            </dd>
+            
+            <dt>Conexões</dt>
+            <dd>
+                {% if person.num_connections == 0 %}
+                    nenhuma conexão
+                {% else %}
+                    {{person.num_connections}}{% if person.num_connections_capped %}+{% endif %} 
+                    conex{{ person.num_connections|pluralize:"ão,ões" }}
+                {% endif %}
+            </dd>
+        </dl>
+        
+        <!-- experience -->
+        
+        {% if person.all_positions %}
+        <div style="margin-top:40px">
+        
+            <h4>Experiência Profissional</h4>
+            
+            <dl>
+            {% for position in person.all_positions %}
+                {% if position.title and position.company.name %}
+                    <dt>
+                        {% if position.title %}{{position.title}}{% endif %}
+                        <span style="font-weight:normal">
+                            {% if position.company.name %}{{ position.company.name }}{% endif %}
+                            {% if position.start_date_month %}| {{ position.start_date_month|stringformat:"02d/" }}{{ position.start_date_year }}{% endif %}
+                            {% if position.is_current %} - Atual{% else %} a {{ position.end_date_month|stringformat:"02d" }}/{{position.end_date_year}}{% endif %}
+                        </span>
+                    </dt>
+                    <dd>{% if position.summary %}{{position.summary|linebreaks}}{% endif %}</dd>
+                {% endif %}
+            {% endfor %}
+            </dl>
+        
+        </div>
+        {% endif %}
+        
+        
+        <!-- education -->
+        
+        {% if person.education_set.all %}
+        <div style="margin-top:40px">
+            
+            <h4>Educação</h4>
+            
+            <dl>
+            {% for education in person.education_set.all %}
+                {% if education.school_name %}
+                    <dt>
+                        {{education.school_name}}
+                        <p style="font-weight:normal">
+                            {% if education.degree %}{{education.degree}} {% endif %}
+                            {% if education.field_of_study %} {{education.field_of_study}}{% endif %}
+                        </p>
+                    </dt>
+                    {% if education.activities %}
+                        <dd>{{education.activities|linebreaks}}</dd>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </dl>
+        </div>
+        {% endif %}
+        
+    </div>
+    
+    <div class="span3 offset1">
+        
+        <a href="{{person.profile_url}}" target="_blank">{{person.first_name}} {{person.last_name}} no Linkedin</a>
+        
+        <div style="margin-top:40px">
+            <h6>Outras Pessoas</h6>
+            {% for p in random_people %}
+            <div>
+	            <div><a href="{% url 'people_profile' p.slug %}">{{ p.first_name }} {{ p.last_name }}</a></div>
+	            <span>{{ p.headline }}</span>
+	        </div>
+	        <hr style="margin:10px 0;">
+	        {% endfor %}
+        </div>
+		
+		<div style="margin-top:40px">
+			{{ person.first_name }} {{ person.last_name }} é você?
+			<ul>
+				<li><a href="{% url 'people_update' person.slug %}">Atualizar perfil</a></li>
+				<li><a id="delete_linkedin" href="#">Excluir</a></li>
+			</ul> 
+		</div>
+        
+    </div>
+    
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

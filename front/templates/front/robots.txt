@@ -1,0 +1,19 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /mudar-senha/ok/
+Disallow: /recuperar-senha/ok/
+Disallow: /recuperar-senha/pronto/
+Disallow: /vagas/criar/
+Disallow: /vagas/preview/
+Disallow: /vagas/publicar/
+Disallow: /vagas/cancelar/
+Disallow: /vagas/excluir/
+Disallow: /vagas/editar/
+Disallow: /pessoas/autorizar/
+Disallow: /pessoas/autorizado/
+Disallow: /pessoas/deletar/
+Disallow: /pessoas/atualizar/
+Disallow: /editar/
+Disallow: /excluir/
+
+Sitemap: http://www.startupforme.com/sitemap.xml

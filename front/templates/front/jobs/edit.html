@@ -1,0 +1,54 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+{% load fieldsets %}
+
+{% block content %}
+
+<div class="row">
+    <div class="span12">
+        <h2 class="page-title">{{ job.title }}</h2>
+        <div>
+            <a href="{% url 'startups_details' job.startup.owner.username %}">{{ job.startup.name }}</a>
+            {% if job.published %}
+                publicado <span class="timeago" title='{{ job.published|date:"c" }}'>{{ job.published }}</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+
+    <div class="span12">
+
+        <form action="{% url 'jobs_edit' job.slug %}?{{request.GET.urlencode}}" method="post" class="form-horizontal">{% csrf_token %}
+            {% include 'front/jobs/_form.html' with submit_label='Salvar' %}
+        </form>
+
+    </div>
+</div>
+
+{% include 'front/layout/_markdown_help.html' %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,141 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="span12">
+        <h2 class="page-title">Conheça nosso time</h2>
+    </div>
+</div>
+
+<hr>
+
+<p>
+	Somos uma empresa familiar, acreditamos que a nossa relação traz grandes benefícios. Colecionamos talentos em diversas áreas e 
+	conseguimos unir nossas forças para criar este projeto inovador no Brasil. Conheça um pouco de cada um de nós!
+</p>
+
+<!-- Elmo Hora -->
+<div class="row" style="margin-top:60px;">
+    <div class="span1">
+        <img class="img-circle" src="http://m3.licdn.com/mpr/mprx/0_C-W9UUiDo81NgaZ2hrIdU4-aoCLJxHd2h1gWU4GxzTAd8uOuaqMVzZnlXo56pfHh_AwHNxpVGpIc" />
+    </div>
+    <div class="details span11">
+        <h3 class="list-item-title">
+            <a style="color:#34495e" href="{% url 'people_profile' 'elmo-camposhora' %}">Elmo Hora</a>
+        </h3>
+        <div style="margin-top:5px">
+            <span class="label label-belize-hole">Empreendedorismo</span>
+            <span class="label label-peter-river">Vendas</span>
+            <span class="label label-belize-hole">Marketing</span>
+            <span class="label label-peter-river">Investimentos</span>
+            <span class="label label-belize-hole">Vinhos</span>
+        </div>
+        <div style="margin-top:5px">
+            <p>
+            	Este é um veterano no mercado capixaba e brasileiro. "Seu Elmo" (uma piadinha interna :) é um empreendedor e vendedor nato, desde seus 20 e poucos anos
+            	criou e liderou várias empresas e obteve grande sucesso. Ele traz sua bagagem de mais de 30 anos para ajudar a
+            	<span class="startupforme">startup<span class="for">for</span>me</span> andar no trilho certo. Trabalha junto com nossa equipe
+            	de marketing e administrativa e mantém relação com nossos investidores. 
+            </p>
+        </div>
+    </div>
+</div>
+<!-- / Elmo Hora -->
+
+<hr>
+
+<!-- Gabriel Hora -->
+<div class="row">
+    <div class="span1">
+        <img class="img-circle" src="http://m3.licdn.com/mpr/mprx/0_V5_s-XoghPsGqUXy4XtL-bJ72Ka394qyZCBL-QR71vVAdyipn_Pny67TGOmOv0zKRQTkj3W6HuNx" />
+    </div>
+    <div class="details span11">
+        <h3 class="list-item-title">
+            <a style="color:#34495e" href="{% url 'people_profile' 'gabrielhora' %}">Gabriel Hora</a>
+        </h3>
+        <div style="margin-top:5px">
+            <span class="label label-belize-hole">Python</span>
+            <span class="label label-peter-river">Ruby</span>
+            <span class="label label-belize-hole">Perl</span>
+            <span class="label label-peter-river">PostgreSQL</span>
+            <span class="label label-belize-hole">NoSQL</span>
+            <span class="label label-peter-river">Redis</span>
+            <span class="label label-belize-hole">Tunning</span>
+            <span class="label label-peter-river">Java</span>
+            <span class="label label-belize-hole">C/C++</span>
+        </div>
+        <div style="margin-top:5px">
+            <p>
+            	Há mais de 10 anos trabalhando com desenvolvimento de software, passou por grandes empresas no mercado brasileiro como a Locaweb, Rakuten e Accor.
+            	Responsável pelo desenvolvimento e manutenção de toda tecnologia do <span class="startupforme">startup<span class="for">for</span>me</span>.
+            	Programador desde os 12 anos de idade, trabalha com tecnologia desde sempre e nas horas vagas gosta de programar mais um pouquinho!
+            </p>
+        </div>
+    </div>
+</div>
+<!-- / Gabriel Hora -->
+
+<hr>
+
+<!-- Josiane Pedruzzi -->
+<div class="row">
+    <div class="span1">
+        <img class="img-circle" src="http://m3.licdn.com/mpr/mprx/0_OSEuUBDovTifdhY2pmUPUzH4v3Lad5Y2yfY1Uqo4EXAO93Wutws8zNY9U75AECxh0metNP4ttUHm" />
+    </div>
+    <div class="details span11">
+        <h3 class="list-item-title">
+            <a style="color:#34495e" href="{% url 'people_profile' 'josianepedruzzi' %}">Josiane Pedruzzi</a>
+        </h3>
+        <div style="margin-top:5px">
+            <span class="label label-belize-hole">Administração</span>
+            <span class="label label-peter-river">RH</span>
+            <span class="label label-belize-hole">Financeiro</span>
+            <span class="label label-peter-river">Investimentos</span>
+            <span class="label label-belize-hole">Festas da Empresa</span>
+        </div>
+        <div style="margin-top:5px">
+            <p>
+            	Essa é a nossa administradora! Ela é responsável por toda área financeira e administrativa da <span class="startupforme">startup<span class="for">for</span>me</span>.
+            	Conhecimento e vontade de trabalhar é o que não falta para ela! Gosta de um trabalho meticulosamente bem feito e de organizar as festas da empresa!
+            </p>
+        </div>
+    </div>
+</div>
+<!-- / Josiane Pedruzzi -->
+
+<hr>
+
+<!-- Josiane Pedruzzi -->
+<div class="row">
+    <div class="span1">
+        <img class="img-circle" src="http://m3.licdn.com/mpr/mprx/0_0hOv4td0IFPGnIM8xQyo4rZ1wiN29DW8j3oo4AdiNh8pdWYhP6aMnlgD5wq1voeuOipwcnUX5z2W" />
+    </div>
+    <div class="details span11">
+        <h3 class="list-item-title">
+            <a style="color:#34495e" href="{% url 'people_profile' 'celsohora' %}">Celso Hora</a>
+        </h3>
+        <div style="margin-top:5px">
+            <span class="label label-belize-hole">Strategic Planning</span>
+            <span class="label label-peter-river">Social Media Marketing</span>
+            <span class="label label-belize-hole">Search Advertising</span>
+            <span class="label label-peter-river">Mobile Marketing</span>
+            <span class="label label-belize-hole">Creative Strategy</span>
+            <span class="label label-peter-river">E outras palavras bonitas assim...</span>
+        </div>
+        <div style="margin-top:5px">
+            <p>
+            	Nosso marketeiro de plantão! A história deste aí é longa... já liderou projetos para Globo, SBT, Abril, Unimed, Roche e por ai vai! Consquitou Ouro na categoria
+            	internet no Premio Colibri de 2012 com um projeto inovador para o governo do estado do Espírito Santo. Óbviamente, este é o cara que vai levar a 
+				<span class="startupforme">startup<span class="for">for</span>me</span> até vocês empresas e profissionais cuidando da nossa estratégia de marketing.
+            </p>
+        </div>
+    </div>
+</div>
+<!-- / Josiane Pedruzzi -->
+
+
+<hr>
+
+
+{% endblock %}

@@ -1,0 +1,10 @@
+venv/
+.project
+.pydevproject
+.settings
+.idea/
+*.pyc
+
+/media/
+/logs/
+/static/

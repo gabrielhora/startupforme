@@ -1,0 +1,17 @@
+Olá {{ person.full_name }},
+
+Seja bem-vindo a comunidade do StartupForMe!
+
+Obrigado por compartilhar seu perfil, agora você faz parte de um banco de profissionais talentosos e prontos para enfrentar as batalhas de uma startup.
+
+É importante que se lembre de atualizar seu perfil no StartupForMe sempre que fizer alguma atualização no Linkedin.
+
+Para isso basta acessar a sua página no endereço {{ profile_url }} e clicar no link "Atualizar Perfil", ou use este link diretamente {{ update_profile_url }}.
+
+
+Tenha um bom dia e nos vemos por ai.
+
+- StartupBot
+
+
+www.StartupForMe.com

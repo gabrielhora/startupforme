@@ -1,0 +1,422 @@
+html, body {
+	height: 100%;
+	/*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+}
+
+.startupforme {
+	font-weight: 900;
+    color: #34495e;
+}
+
+.startupforme .for {
+	font-weight: normal;
+	color: #2980b9;
+}
+
+.blue {
+    color: #2980b9;
+}
+
+/* sticky footer */
+
+#main {
+    margin-top: 40px;
+    line-height: 1.5;
+    overflow: auto;
+    padding-bottom: 60px;
+}
+
+#footer {
+    text-align: center;
+    font-size:12px;
+    padding: 20px 0;
+}
+
+#footer hr {
+    margin-left: 250px;
+    margin-right: 250px;
+} 
+
+/* end of sticky footer */
+
+
+/* top menu */
+    
+#topmenu {
+    background: #34495e;
+    border-top: 5px solid #2980b9;
+    color: #ecf0f1;
+}
+
+#topmenu .logo a {
+    display: inline-block;
+}
+
+#topmenu .logo img {
+    max-height: 40px;
+}
+
+#topmenu .menu {
+    position: relative;
+    text-align: right;
+}
+
+#topmenu .menu a { 
+    font-size: 13px;
+    line-height: 40px;
+    display: inline-block;
+    padding: 0 10px;
+    text-transform: uppercase;
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+#topmenu .dropdown-menu a {
+    clear: both;
+    color: #333333;
+    display: block;
+    font-weight: normal;
+    line-height: 20px;
+    padding: 3px 20px;
+    white-space: nowrap;
+    text-transform: none;
+}
+
+#topmenu a:hover,
+#topmenu a.active,
+#topmenu .dropdown-menu a:hover {
+    background: #2980b9;
+    color: #ecf0f1;
+}
+
+#topmenu .dropdown-menu {
+    text-align: left;
+}
+
+#topmenu .menu a i {
+    margin-right:2px;
+}
+
+#topmenu li {
+    margin: 0;
+    padding: 0;
+}
+
+#topmenu li.space {
+    width: 40px;
+}
+
+#topmenu ul {
+    padding: 0;
+    margin: 0;
+}
+
+/* end of top menu*/
+
+.follow {
+    margin-top: 30px;
+    font-size: 16px;
+    line-height: 60px;
+}
+
+.follow a {
+    color: #2980b9;
+}
+
+hr {
+	margin: 30px 0;
+}
+
+hr.small_top {
+    margin: 10px 0 30px 0;
+}
+
+label[for*='clear_id'] {
+	display: inline;
+}
+
+textarea {
+	resize: none;
+}
+
+/** Colorful labels */
+	
+.label-turquoise { background-color: #1abc9c; }
+.label-green-sea { background-color: #16a085; }
+.label-emerland { background-color: #2ecc71; }
+.label-nephritis { background-color: #27ae60; }
+.label-peter-river { background-color: #3498db; }
+.label-belize-hole { background-color: #2980b9; }
+.label-amethyst { background-color: #9b59b6; }
+.label-wisteria { background-color: #8e44ad; }
+.label-wet-asphalt { background-color: #34495e; }
+.label-midnight-blue { background-color: #2c3e50; }
+.label-sun-flower { background-color: #f1c40f; }
+.label-orange { background-color: #f39c12; }
+.label-carrot { background-color: #e67e22; }
+.label-pumpkin { background-color: #d35400; }
+.label-alizarin { background-color: #e74c3c; }
+.label-pomegranate { background-color: #c0392b; }
+.label-clouds { background-color: #ecf0f1; color: #000; }
+.label-silver { background-color: #bdc3c7; }
+.label-concrete { background-color: #95a5a6; }
+.label-asbestos { background-color: #7f8c8d; }
+
+
+label.required {
+	font-weight: bold;
+}
+
+a.label {
+    text-decoration: none;
+}
+
+a.label:hover {
+    text-decoration: underline;
+}
+
+dt, dd {
+    margin-bottom: 15px;
+}
+
+.home-title {
+    text-align: center;
+    color: #2980b9;
+}
+
+.share-links {
+    margin-bottom: 40px;
+}
+
+.share-links .link {
+    float: left;
+    margin-right: 20px;
+}
+
+.dark-link {
+    color: #34495E;
+}
+
+.dark-link:hover {
+    color: #34495E;
+}
+
+.page-title,
+.list-item-title {
+    padding:0;
+    margin:0;
+}
+
+.page-title a {
+    color: #34495E;
+}
+
+.list-item-title {
+    font-weight: normal;
+    line-height: 30px;
+}
+
+.list-item-title a {
+    text-decoration: none;
+}
+.list-item-title a:hover {
+    text-decoration: underline;
+}
+
+.alert ul, ol {
+	margin-bottom: 0;
+}
+
+.dk_fouc select {
+    position: static;
+    top: auto;
+    visibility: inherit;
+}
+
+.white-caret {
+	border-top-color: #FFF !important;
+	border-bottom-color: #FFF !important;
+}
+
+.toolbar-menu {
+	text-align: left;
+}
+
+.toolbar-menu a {
+	text-decoration: none;
+}
+
+.tooltip-inner {
+	width: auto;
+	padding: 10px 20px;
+}
+
+.demo-headline {
+	padding: 40px 0 40px 0;
+}
+
+.demo-headline .form-search {
+	margin-top: 30px;
+	margin-bottom: 0;
+}
+
+.demo-headline .form-search input {
+	font-size: 16.5px;
+	height: 24px;
+}
+
+.demo-headline p {
+    font-size: 16px;
+}
+
+.demo-headline .actions {
+    margin-top: 30px;
+}
+
+.demo-headline .actions small {
+    color: rgba(52, 73, 94, 0.3);
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.demo-headline .actions a i {
+    margin-right: 10px;
+}
+
+.demo-logo {
+	font-size: 48px;
+	line-height: normal;
+}
+
+.benefits .content h4 {
+    color: #2980b9;
+}
+
+.benefits div.content {
+    padding: 20px 50px 20px 50px;
+}
+
+.btn-toolbar .btn-group a {
+	font-size: 16px;
+}
+
+.btn-toolbar .btn-group a span {
+	margin-left: 5px;
+}
+
+.btn-toolbar-links {
+	text-align: center;
+	font-size: 18px;
+	line-height: 40px;
+	margin-top: 10px;
+}
+
+.btn-toolbar-links .popover-title {
+	display: none;
+}
+
+.home-link {
+	font-size: 32px;
+	margin-top: 5px;
+}
+
+.home-link a {
+	text-decoration: none;
+	padding-top: 5px;
+}
+
+.home-link a:hover {
+	background: #3498db;
+	color: white;
+}
+
+#login-form {
+	margin: 10px 0 0 0;
+	text-align: right;
+}
+
+.login {
+	background: none;
+	margin-bottom: 0;
+	padding: 38px 38px 0;
+}
+
+.login-screen {
+	background: none;
+	min-height: 0;
+	padding: 0 199px 0 306px;
+}
+
+.login-screen h1 {
+	color: #34495E !important;
+}
+
+.login-form {
+	background-color: #eceff1;
+	border-radius: 6px;
+	padding: 24px 23px 20px;
+	position: relative;
+}
+
+.login-form:before {
+	border: none;
+}
+
+.startup-item .details p {
+	margin-top: 5px;
+}
+
+.startup-item .details h2 {
+	margin: 0;
+	padding: 0;
+}
+
+.startup-item .details h2 a {
+	color: #34495E;
+}
+
+.startup-details h1 {
+}
+
+.startup-details .pictures {
+	margin-bottom: 40px;
+}
+
+.startup-details .logo {
+	margin-bottom: 20px;
+	max-width: 220px;
+	max-height: 220px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

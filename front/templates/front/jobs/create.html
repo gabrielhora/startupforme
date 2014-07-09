@@ -1,0 +1,45 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+{% load fieldsets %}
+
+{% block content %}
+
+<div class="row">
+
+	<div class="span12">
+		<h2>Cadastre sua Vaga</h2>
+		<hr />
+
+        <form action="{% url 'jobs_create' %}" method="post" class="form-horizontal">{% csrf_token %}
+            {% include 'front/jobs/_form.html' with submit_label='Cadastrar' %}
+        </form>
+
+	</div>
+</div>
+
+{% include 'front/layout/_markdown_help.html' %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

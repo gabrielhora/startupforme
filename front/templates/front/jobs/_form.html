@@ -1,0 +1,62 @@
+{% load fieldsets %}
+
+<!-- form begin -->
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    
+    {% include 'front/layout/_form_errors.html' %}
+    
+    {% get_fieldset title,tags,description,apply as required_form from form %}
+    
+    {% for field in required_form %}
+        {% include 'front/layout/_form_field.html' %}
+    {% endfor %}
+
+    <div class="control-group">
+        <div class="controls">
+            <a id="show_fields" href="#">mostrar campos opcionais</a>
+        </div>
+    </div>
+
+    <div id="optional_fields" style="display:none">
+        <div class="control-group">
+            <div class="controls">
+                <a id="hide_fields" href="#">esconder campos opcionais</a>
+            </div>
+        </div>
+
+        {% get_fieldset experience,education,salary as optional_form from form %}
+    
+        {% for field in optional_form %}
+            {% include 'front/layout/_form_field.html' %}
+        {% endfor %}
+    </div>
+    
+    <hr>
+
+    <div class="control-group">
+        <div class="controls">
+            <button class="btn btn-primary btn-large">{{ submit_label }}</button>
+        </div>
+    </div>
+<!-- /form -->
+
+<script type="text/javascript">
+    $('#show_fields').click(function(e) {
+        $('#optional_fields').toggle();
+        var pos = $('#optional_fields').offset();
+        $('html, body').animate({ scrollTop: pos.top }, 200);
+        e.preventDefault();
+        $(this).hide();
+    });
+    
+    $('#hide_fields').click(function(e) {
+        $('#optional_fields').toggle();
+        $('html, body').scrollTop(0);
+        e.preventDefault();
+        $('#show_fields').show();
+    });
+</script>
+
+

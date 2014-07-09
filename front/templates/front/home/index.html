@@ -1,0 +1,134 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+{% load staticfiles %}
+
+{% block scripts %}
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#linkedin").on("click", function(e) {
+            e.preventDefault();
+            bootbox.confirm($("#linkedin_confirm").html(), "Não concordo", "Concordo", function(result) {
+                if (result) {
+                    window.location.replace("{% url 'people_authorize' %}");
+                }
+            });
+        });
+    });
+    </script>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="demo-headline">
+        <h1 class="demo-logo">
+            <small>Seja bem-vindo ao</small>
+            <img src="{% static 'front/images/logo_332x45.png' %}"/>
+        </h1>
+
+        <p>
+            Um banco de startups, vagas e profissionais <i class="blue">livre</i> e sem burocracia, de startup para
+            startup.<br/>
+            Sem curadoria, sem banners, sem propagandas, nada além do que você realmente procura.
+        </p>
+
+        <div class="row actions">
+            <div class="span4 offset2">
+                <small>Startup</small>
+                <a href="{% url 'startups_create' %}" class="btn btn-large btn-info"><i class="fui-location-24"></i>
+                    Cadastre-se Grátis</a>
+            </div>
+            <div class="span4">
+                <small>Profissional</small>
+                <a id="linkedin" href="#" class="btn btn-large btn-success"><i class="fui-man-24"></i> Entre
+                    com seu Linkedin</a>
+                <div style="display:none" id="linkedin_confirm">
+                    <p><b>Atenção</b></p>
+                    <p>
+                        Para entrar no site como profissional você deve possuir uma conta no <a href="http://www.linkedin.com" target="_blank">Linkedin</a>.
+                        Usaremos as mesmas informações do seu perfil no <b>Linkedin</b> para criar seu cadastro aqui, você não precisa de mais um usuário e senha.
+                    </p>
+                    <p>
+                        Informações pessoais (como endereços, telefones ou emails) <b>NUNCA</b> serão disponibilizadas publicamente.
+                        Caso uma startup queira entrar em contato com você, ela deverá fazê-lo através do <b>Linkedin</b> diretamente.
+                        A qualquer momento você pode cancelar sua inscrição no nosso site através da sua página.
+                    </p>
+                    <p>Ao entrar você concorda com os termos da licença <a href="http://creativecommons.org/licenses/by/3.0/br/deed.pt" target="_blank">Creative Commons (CC-BY)</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row follow">
+            Receba novidades pelo twitter
+            <a href="http://twitter.com/startupforme" target="_blank">
+                <img src="{{ STATIC_URL }}front/images/twitter-bird-light-bgs.png" style="height:35px;width:auto;" />
+                @startupforme
+            </a>.
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row benefits">
+        <div class="span6">
+            <div class="content">
+                <h4>Simples e rápido</h4>
+
+                <p>
+                    Sem cadastros complexos ou informações irrelevantes. Aqui tudo é pensando para ser rápido e fácil de
+                    usar.
+                </p>
+            </div>
+        </div>
+
+        <div class="span6">
+            <div class="content">
+                <h4>Ao vivo, sem curadoria</h4>
+
+                <p>
+                    Suas vagas ficam online no momento que você as publica, nada de processos de aprovação lentos e
+                    burocráticos.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row benefits">
+        <div class="span6">
+            <div class="content">
+                <h4>API <small>em breve</small></h4>
+
+                <p>
+                    Iremos disponibilizar uma API com todas as informações do site disponíveis para consumo lívre! Tudo
+                    sob uma
+                    licença de uso permissiva e simples de entender.
+                </p>
+            </div>
+        </div>
+
+        <div class="span6">
+            <div class="content">
+                <h4>Creative Commons</h4>
+
+                <p>
+                    Todo conteúdo do site está disponível sob a licença <a href="http://creativecommons.org/licenses/by/3.0/br/deed.pt" target="_blank">Creative Commons (CC-BY)</a>.
+                    Isso significa que você pode usar qualquer informação publicada aqui livremente.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h4 class="home-title">Algumas Startups</h4>
+
+    <div class="row" style="margin-top:30px">
+        {% for startup in startups %}
+            <div class="span2" style="text-align:center;line-height:100px;">
+                <a href="{% url 'startups_details' startup.owner.username %}" title="{{ startup.name }}">
+                    <img style="max-width:100px" src="{{ startup.logo_thumbnail.url }}" />
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

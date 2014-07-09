@@ -1,0 +1,90 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+{% load fieldsets %}
+{% load maps %}
+
+{% block scripts %}
+<script type="text/javascript">
+function updateMap() {
+    var gmaps_url = "http://maps.googleapis.com/maps/api/staticmap?center=:address,:state&markers=:address,:state&zoom=14&size=620x220&sensor=false";
+    var gmaps_link = "http://maps.google.com/?q=:address,:state";
+    var address = encodeURIComponent($('#id_address').val());
+    var state = encodeURIComponent($('#id_state :selected').text());
+    
+    gmaps_url = gmaps_url.replace(/\:address/g, address).replace(/\:state/g, state);
+    gmaps_link = gmaps_link.replace(/\:address/g, address).replace(/\:state/g, state);
+    
+    console.log(gmaps_link);
+    console.log(gmaps_url);
+    
+    $('#map .map-link').attr('href', gmaps_link);
+    $('#map .map-image').attr('src', gmaps_url);
+}
+
+$(document).ready(function() {
+    $('#id_address').on('blur', function() {
+        updateMap();
+    });
+    $('#id_state').on('change', function() {
+        updateMap();
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+	<div class="span12">
+		<h1>{{ startup.name }}</h1>
+		<hr />
+
+		<form action="{% url 'startups_edit' user.username %}" method="post" class="form-horizontal" enctype="multipart/form-data">
+			{% csrf_token %}
+			{% for hidden in form.hidden_fields %}
+		    	{{ hidden }}
+		    {% endfor %}
+		    
+		    {% include 'front/layout/_form_errors.html' %}
+			
+			{% get_fieldset name,site,short_profile,profile,tags,logo as startup_form from form %}
+			
+			{% for field in startup_form %}
+				{% include 'front/layout/_form_field.html' %}
+		    {% endfor %}
+		    
+		    <hr>
+		    
+		    {% get_fieldset address,state as address_form from form %}
+		    
+		    {% for field in address_form %}
+				{% include 'front/layout/_form_field.html' %}
+		    {% endfor %}
+		    
+		    <div class="control-group">
+                <div class="controls" id="map">
+                    {% if startup.gmaps_address %}
+                        {% get_staticmap_latlng startup.gmaps_address startup.lat startup.lng 620 220 14 %}
+                    {% else %}
+                        {% get_staticmap startup.address startup.state 620 220 14 %}
+                    {% endif %}
+                    <span class="help-block">Este mapa será mostrado no perfil da sua startup.</span>
+                </div>
+            </div>
+		    
+		    <hr>
+
+			<div class="control-group">
+				<div class="controls">
+					<button class="btn btn-primary btn-large">Salvar</button>
+				</div>
+		    </div>
+		    
+		</form>
+
+	</div>
+</div>
+
+{% include 'front/layout/_markdown_help.html' %}
+
+{% endblock %}

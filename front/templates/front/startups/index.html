@@ -1,0 +1,65 @@
+{% extends 'front/layout/main.html' %}
+{% load states %}
+{% load querystring %}
+{% load utils %}
+
+{% block content %}
+
+{% if request.GET %}
+    <div style="margin-bottom: 40px;">
+        <ul class="nav nav-pills">
+        {% if request.GET.tag %}
+            <li><a href="?{% update_querystring tag=-1 %}" class="dark-link"><span class="fui-cross-16"></span> {{ request.GET.tag }}</a></li>
+        {% endif %}
+        {% if request.GET.estado %}
+            <li><a href="?{% update_querystring estado=-1 %}" class="dark-link"><span class="fui-cross-16"></span> {{ request.GET.estado|state_name }}</a></li>
+        {% endif %}
+        </ul>
+    </div>
+{% endif %}
+
+{% for startup in startups %}
+
+	<div class="row startup-item">
+		{% if startup.logo %}
+		<div class="span1">
+			<img class="img-circle" src="{{ startup.logo_thumbnail_circle.url }}" />
+		</div>
+		{% endif %}
+		
+		<div class="details span{% if startup.logo %}8{% else %}9{% endif %}">
+			<h3 class="list-item-title">
+			    <a style="color:#34495e" href="{% url 'startups_details' startup.owner.username %}">{{ startup.name|truncatechars:55 }}</a>
+			</h3>
+			
+			<!-- tags -->
+            {% if startup.tags %}
+                <div style="margin-top:5px">
+                {% for tag in startup.tags.all %}
+                    <a href='?{% update_querystring tag=tag.name %}' class="label label-{% cycle 'belize-hole' 'peter-river' %}">{{ tag.name }}</a>
+                {% endfor %}
+                </div>
+            {% endif %}
+            <!-- /tags -->
+			
+			{% if startup.short_profile %}
+                <div style="margin-top:5px">
+                    {{ startup.short_profile }}
+                </div>
+            {% endif %}
+		</div>
+		
+		<div class="span3" style="text-align:right;overflow:hidden;">
+		    <a href="{{ startup.site }}" title="{{ startup.site }}" target="_blank">{{ startup.site|remove_http:30 }}</a>
+		    <div><a style="color:#34495e" href='?{% update_querystring estado=startup.state %}'>{{ startup.state|state_name }}</a></div>
+		</div>
+	</div>
+	
+	<hr>
+
+{% endfor %}
+
+{% include 'front/layout/_pagination.html' with list=startups %}
+
+
+{% endblock %}

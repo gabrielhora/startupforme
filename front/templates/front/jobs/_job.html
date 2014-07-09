@@ -1,0 +1,132 @@
+{% load markdown %}
+{% load jobs %}
+{% load states %}
+{% load maps %}
+
+<div class="row">
+	<div class="span12">
+		<h2 class="page-title">
+		    {{ job.title }}
+		</h2>
+		<div>
+    		<a href="{% url 'startups_details' job.startup.owner.username %}">{{ job.startup.name }}</a>
+    		{% if job.published %}
+    			publicado <span class="timeago" title='{{ job.published|date:"c" }}'>{{ job.published }}</span>
+    		{% endif %}
+		</div>
+		<div>
+		    <!-- tags -->
+            {% if job.tags.all %}
+                <div style="line-height:30px;">
+                {% for tag in job.tags.all %}
+                    <a href="{% url 'jobs_index' %}?tag={{tag.name|urlencode}}" class="label label-{% cycle 'belize-hole' 'peter-river' %}">{{ tag.name }}</a>
+                {% endfor %}
+                </div>
+            {% endif %}
+            <!-- / tags -->
+		</div>
+	</div>
+</div>
+
+<hr class="small_top">
+
+<div class="row startup-details">
+	<div class="span8">
+	    {% include 'front/layout/_share_links.html' %}
+	    
+		<div class="markdown">{{ job.description|markdown }}</div>
+		
+		{% if job.experience %}
+			<div style="margin-top: 40px">
+				<h4>Experiência</h4>
+				<div class="markdown">{{ job.experience|markdown }}</div>
+			</div>
+		{% endif %}
+		
+		{% if job.education %}
+			<div style="margin-top: 40px">
+				<h4>Educação</h4>
+				<div class="markdown">{{ job.education|markdown }}</div>
+			</div>
+		{% endif %}
+		
+		{% if job.salary %}
+			<div style="margin-top: 40px">
+				<h4>Remuneração & Benefícios</h4>
+				<div class="markdown">{{ job.salary|markdown }}</div>
+			</div>
+		{% endif %}
+		
+		<div class="well" style="margin-top:40px">
+			<h3>Candidate-se agora!</h3>
+			<div class="markdown">{{ job.apply|markdown }}</div>
+		</div>
+		
+	</div>
+
+	<div class="span3 offset1">
+        {% if job.published == None %}
+        <div style="margin-bottom:40px">
+            <a id="publish" class="btn btn-block btn-success btn-large" href="{% url 'jobs_publish' job.slug %}">Publicar</a>
+        </div>
+        {% endif %}
+	    
+	    <!-- startup options -->
+        {% if job.startup.owner == user %}
+        <div style="margin-bottom: 20px">
+            <h6>Opções da Startup</h6>
+            <ul class="unstyled">
+                <li><a  href="{% url 'jobs_edit' job.slug %}{% if not job.published %}?r=preview{% endif %}">Editar</a></li>
+            {% if job.published == None %}
+                <li><a id="cancel" href="{% url 'jobs_cancel' job.slug %}">Cancelar</a></li>
+            {% else %}
+                <li><a id="cancel" href="{% url 'jobs_delete' job.slug %}">Excluir</a></li>
+            {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+        <!-- / startup options -->
+	    
+		{% if job.startup.logo %}
+			<img class="logo img-rounded" src="{{ job.startup.logo_thumbnail.url }}" />
+		{% endif %}
+				
+		<div style="margin-bottom: 20px">
+			{{ job.startup.address }} - {{ job.startup.state|state_name }}
+		</div>
+		
+		<div style="margin-bottom: 40px">
+            {% if job.startup.gmaps_address %}
+                {% get_staticmap_latlng job.startup.gmaps_address job.startup.lat job.startup.lng 220 220 16 %}
+            {% else %}
+                {% get_staticmap job.startup.address job.startup.state 220 220 16 %}
+            {% endif %}
+        </div>
+		
+		<h6>Outras vagas</h6>
+        {% get_other_jobs 5 %}
+	</div>
+	
+</div>
+
+<script type="text/javascript">
+    $("a#cancel").on("click", function(e) {
+        e.preventDefault();
+        href = $(this).attr('href');
+        bootbox.confirm("Tem certeza que deseja excluir esta vaga?", "Cancelar", function(result) {
+            if (result) {
+                window.location.replace(href);
+            }
+        });
+    });
+    
+    $("a#publish").on("click", function(e) {
+        e.preventDefault();
+        bootbox.confirm("<b>Publicar esta vaga?</b><br/>A partir deste momento sua vaga ficará disponível por 30 dias.", "Cancelar", function(result) {
+            if (result) {
+                window.location.replace("{% url 'jobs_publish' job.slug %}");
+            }
+        });
+    })
+</script>
+

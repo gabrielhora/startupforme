@@ -1,0 +1,35 @@
+{% extends 'front/layout/main_nosearchbar.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="span12">
+        <h2 class="page-title">Assinar Newsletter</h2>
+    </div>
+</div>
+
+<hr>
+
+<form action="" method="post" class="form-horizontal">{% csrf_token %}
+    <div class="control-group">
+        <label class="control-label">Email</label>
+        <div class="controls"><input type="text" id="id_email" name="email"/></div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Nome</label>
+        <div class="controls"><input type="text" id="id_name" name="name"/></div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Sobrenome</label>
+        <div class="controls"><input type="text" id="id_last_name" name="last_name"/></div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-large">Enviar</button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $('#id_email').focus();
+</script>
+
+{% endblock %}
